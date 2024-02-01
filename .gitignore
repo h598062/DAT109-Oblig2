@@ -224,6 +224,7 @@ fabric.properties
 
 !.idea/codeStyles
 !.idea/runConfigurations
+!.idea/externalDependencies.xml
 
 ### Java ###
 # Compiled class file
