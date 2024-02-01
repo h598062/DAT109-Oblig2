@@ -1,27 +1,84 @@
 @startuml Klassediagram - Oblig2
 'https://plantuml.com/class-diagram
 
-abstract class AbstractList
-abstract AbstractCollection
-interface List
-interface Collection
 
-List <|-- AbstractList
-Collection <|-- AbstractCollection
-
-Collection <|- List
-AbstractCollection <|- AbstractList
-AbstractList <|-- ArrayList
-
-class ArrayList {
-Object[] elementData
-size()
+class Kunde {
+	fornavn
+	etternavn
+	adresse
+	telefonnummer
 }
 
-enum TimeUnit {
-DAYS
-HOURS
-MINUTES
+class Bil {
+	registreringsnummer
+	merke
+	modell
+	farge
+	utleiegruppe
+	ledigStatus
 }
+
+class Utleiekontor {
+	kontornummer
+	adresse
+	telefonnummer
+}
+
+class Selskap {
+	navn
+	telefonnummer
+	firmaadresse
+}
+
+class Reservasjon {
+	sted
+	dato
+	klokkeslett
+	antallDager
+	pris
+}
+
+class Utleie {
+	henteSted
+	kilometerstandVedHent
+	datoHent
+	klokkeslettHent
+	datoForventetLevert
+	klokkeslettForventetLevert
+	datoLevert
+	klokkeslettLevert
+	kilometerstandVedRetur
+	levertSted
+	pris/regning
+}
+
+class Regning {
+
+}
+
+class Adresse {
+	gateadresse
+	postnummer
+}
+
+class Poststed {
+	postnummer
+	poststed
+}
+
+Selskap -down- Utleiekontor
+Selskap -left- Adresse
+Adresse -down- Poststed
+Utleiekontor - Bil
+Utleiekontor - Adresse
+Selskap - Kunde
+Kunde - Adresse
+Kunde - Reservasjon
+Kunde -left- Regning
+Reservasjon - Bil
+Utleiekontor -down- Reservasjon
+Utleiekontor -down- Utleie
+Kunde -down- Utleie
+Utleie - Reservasjon
 
 @enduml
