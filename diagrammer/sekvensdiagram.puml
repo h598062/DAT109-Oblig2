@@ -1,11 +1,56 @@
 @startuml Sekvensdiagram - Oblig2
 'https://plantuml.com/sequence-diagram
 
-autonumber
+!theme cerulean
 
-Alice -> Bob: Authentication Request
-Bob --> Alice: Authentication Response
+'autonumber
+actor "Bruker" as br
+'participant "Selskap"         as s
+participant "Webportal"        as wp
+participant "nettsidehjelper"  as nh
+participant "Utleiekontor"     as uk
+participant "Reservasjon"      as r
+participant "Utleie"          as u
+participant "Regning"         as rg
+participant "Bil"              as b
+participant "Kunde"            as k
 
-Alice -> Bob: Another authentication Request
-Alice <-- Bob: another authentication Response
+'gjøre reservasjon via nettside
+br -> wp       : Åpne nettsiden
+activate wp
+wp -> nh    : finnBiler(utleiested, utleiegruppe)
+activate nh
+nh -> uk    : biler(utleiegruppe)
+uk -> b     : utleiegruppe
+nh <-- uk   : treff
+wp <-- nh   : bilListe
+deactivate nh
+wp -> r     : opprettReservasjon()
+r -> b      : settReservert
+r -> k      : leggInnInformasjon(kundeinfo)
+r --> wp     : reservasjon
+deactivate wp
+
+'reservere bil via utleiested
+br -> uk       : Reservere bil (utleiested)
+uk -> r     : opprettReservasjon()
+r -> b      : settTilgjengelig(false)
+r -> k      : leggInnInformasjon(kundeinfo)
+
+'hente bilen på utleiested
+br -> uk       : Hente bil
+uk -> r     : finnReservasjon()
+r -> r      : ferdigStillReservasjon()
+r -> u      : lagUtleie()
+u -> b      : sjekkTilstand()
+uk -> b     : leverUtBil()
+
+'levere bil tilbake
+br -> uk       : Levere tilbake bilen
+uk -> u     : finnUtleie()
+u -> b      : sjekkTilstand()
+u -> rg     : opprettRegning()
+rg -> k     : betalRegning()
+uk -> b     : settTilgjengelig(true)
+
 @enduml

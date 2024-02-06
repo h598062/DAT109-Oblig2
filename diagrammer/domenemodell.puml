@@ -2,26 +2,32 @@
 'Bruker samme diagram type som Klassediagram
 'https://plantuml.com/class-diagram
 
-abstract class AbstractList
-abstract AbstractCollection
-interface List
-interface Collection
+!theme cerulean
 
-List <|-- AbstractList
-Collection <|-- AbstractCollection
+'left to right direction
 
-Collection <|- List
-AbstractCollection <|- AbstractList
-AbstractList <|-- ArrayList
-
-class ArrayList {
-Object[] elementData
-size()
+class "Utleiekontor"    as uk
+class "Bil"             as b {
+	utleiegruppe
 }
+class "Kunde"           as k
+class "Reservasjon"     as r
+class "Regning"         as rg
+class "Utleie"          as u
+class "Selskap"         as s
 
-enum TimeUnit {
-DAYS
-HOURS
-MINUTES
-}
+s  "1..*" -down->  "1..1" uk
+s  "1..*" -down->  "1..1" k
+uk "1..*" -down->  "1..1" r
+uk "1..*" -right-  "1..1" rg
+rg "1..1" -right-  "1..1" k
+uk "1..*" -down->  "1..1" u
+u  "1..1" -up-     "1..1" rg
+uk "1..*" -down->  "1..1" b
+k  "1..*" -down->  "1..1" u
+k  "1..*" -down->  "1..1" r
+u  "1..1" -down->  "1..*" b
+r  "1..1" -down->  "1..*" b
+r  "1..1" -right-> "1..1" u : "                            "
+
 @enduml
