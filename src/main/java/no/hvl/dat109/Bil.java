@@ -7,9 +7,9 @@ public class Bil {
 	private String modell;
 	private String farge;
 	private String utleigegruppe;
-	private String ledigStatus;
+	private boolean ledigStatus;
 
-public Bil(String registreningsnummer, String merke, String modell, String farge, String utleigegruppe, String ledigStatus) {
+public Bil(String registreningsnummer, String merke, String modell, String farge, String utleigegruppe, boolean ledigStatus) {
 	this.registreningsnummer = registreningsnummer;
 	this.merke = merke;
 	this.modell =  modell;
@@ -58,11 +58,11 @@ public Bil(String registreningsnummer, String merke, String modell, String farge
 		this.utleigegruppe = utleigegruppe;
 	}
 
-	public String getLedigStatus() {
+	public boolean getLedigStatus() {
 		return ledigStatus;
 	}
 
-	public void setLedigStatus(String ledigStatus) {
+	public void setLedigStatus(boolean ledigStatus) {
 		this.ledigStatus = ledigStatus;
 	}
 }
