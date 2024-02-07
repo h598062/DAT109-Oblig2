@@ -1,14 +1,24 @@
 package no.hvl.dat109;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Selskap {
 	private String navn;
-	private int telefon;
+	private String telefon;
 	private String firmaadresse;
 
-	public Selskap(String navn,int telefon, String firmaadresse) {
+	private List<Utleiekontor> utleiekontorer;
+
+	public Selskap(String navn, String telefon, String firmaadresse) {
 		this.navn = navn;
 		this.telefon = telefon;
 		this.firmaadresse = firmaadresse;
+		utleiekontorer = new ArrayList<>();
+	}
+
+	public void leggTilUtleieKontor(Utleiekontor kontor) {
+		utleiekontorer.add(kontor);
 	}
 
 	public String getNavn() {
@@ -19,11 +29,11 @@ public class Selskap {
 		this.navn = navn;
 	}
 
-	public int getTelefon() {
+	public String getTelefon() {
 		return telefon;
 	}
 
-	public void setTelefon(int telefon) {
+	public void setTelefon(String telefon) {
 		this.telefon = telefon;
 	}
 

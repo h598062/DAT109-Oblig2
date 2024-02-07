@@ -9,13 +9,13 @@ public class Bil {
 	private String utleigegruppe;
 	private boolean ledigStatus;
 
-public Bil(String registreningsnummer, String merke, String modell, String farge, String utleigegruppe, boolean ledigStatus) {
+public Bil(String registreningsnummer, String merke, String modell, String farge, String utleigegruppe) {
 	this.registreningsnummer = registreningsnummer;
 	this.merke = merke;
 	this.modell =  modell;
 	this.farge = farge;
 	this.utleigegruppe = utleigegruppe;
-	this.ledigStatus = ledigStatus;
+	ledigStatus = true;
 }
 
 	public String getRegistreningsnummer() {
