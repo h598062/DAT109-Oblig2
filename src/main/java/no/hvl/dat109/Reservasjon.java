@@ -17,4 +17,44 @@ public class Reservasjon {
 		this.antallDager = antallDager;
 		this.pris        = pris;
 	}
+
+	public String getSted() {
+		return sted;
+	}
+
+	public void setSted(String sted) {
+		this.sted = sted;
+	}
+
+	public LocalDate getDato() {
+		return dato;
+	}
+
+	public void setDato(LocalDate dato) {
+		this.dato = dato;
+	}
+
+	public LocalTime getKlokkeslett() {
+		return klokkeslett;
+	}
+
+	public void setKlokkeslett(LocalTime klokkeslett) {
+		this.klokkeslett = klokkeslett;
+	}
+
+	public int getAntallDager() {
+		return antallDager;
+	}
+
+	public void setAntallDager(int antallDager) {
+		this.antallDager = antallDager;
+	}
+
+	public double getPris() {
+		return pris;
+	}
+
+	public void setPris(double pris) {
+		this.pris = pris;
+	}
 }
