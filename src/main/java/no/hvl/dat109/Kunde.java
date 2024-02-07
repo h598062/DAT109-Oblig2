@@ -12,4 +12,36 @@ public class Kunde {
 		this.adresse       = adresse;
 		this.telefonnummer = telefonnummer;
 	}
+
+	public String getFornavn() {
+		return fornavn;
+	}
+
+	public void setFornavn(String fornavn) {
+		this.fornavn = fornavn;
+	}
+
+	public String getEtternavn() {
+		return etternavn;
+	}
+
+	public void setEtternavn(String etternavn) {
+		this.etternavn = etternavn;
+	}
+
+	public String getAdresse() {
+		return adresse;
+	}
+
+	public void setAdresse(String adresse) {
+		this.adresse = adresse;
+	}
+
+	public String getTelefonnummer() {
+		return telefonnummer;
+	}
+
+	public void setTelefonnummer(String telefonnummer) {
+		this.telefonnummer = telefonnummer;
+	}
 }
