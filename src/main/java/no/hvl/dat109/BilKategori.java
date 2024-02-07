@@ -11,4 +11,9 @@ public enum BilKategori {
 	public int pris() {
 		return pris;
 	}
+
+	@Override
+	public String toString() {
+		return name() + " pris: " + pris();
+	}
 }
