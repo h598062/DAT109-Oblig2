@@ -4,12 +4,12 @@ public class Utleiekontor {
 	private int nesteKontorNummer = 1;
 	private int kontorNummer;
 	private String adresse;
-	private int telefon;
+	private String telefon;
 
-	public Utleiekontor(String adresse, int telefon) {
+	public Utleiekontor(String adresse, String telefon) {
 		this.adresse = adresse;
 		this.telefon = telefon;
-		this.kontorNummer = nesteKontorNummer;
+		kontorNummer = nesteKontorNummer;
 		nesteKontorNummer++;
 	}
 
