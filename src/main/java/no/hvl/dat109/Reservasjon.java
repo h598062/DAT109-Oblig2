@@ -4,25 +4,31 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class Reservasjon {
-	private String sted;
+	private Utleiekontor sted;
+	private Utleiekontor destinasjon;
 	private LocalDate dato;
 	private LocalTime klokkeslett;
 	private int antallDager;
 	private double pris;
 
-	public Reservasjon(String sted, LocalDate dato, LocalTime klokkeslett, int antallDager, double pris) {
+	public Reservasjon(Utleiekontor sted, Utleiekontor destinasjon, LocalDate dato, LocalTime klokkeslett, int antallDager, double pris) {
 		this.sted        = sted;
+		this.destinasjon = destinasjon;
 		this.dato        = dato;
 		this.klokkeslett = klokkeslett;
 		this.antallDager = antallDager;
 		this.pris        = pris;
 	}
 
-	public String getSted() {
+	public Utleiekontor getDestinasjon() {
+		return destinasjon;
+	}
+
+	public Utleiekontor getSted() {
 		return sted;
 	}
 
-	public void setSted(String sted) {
+	public void setSted(Utleiekontor sted) {
 		this.sted = sted;
 	}
 
@@ -56,5 +62,11 @@ public class Reservasjon {
 
 	public void setPris(double pris) {
 		this.pris = pris;
+	}
+
+	@Override
+	public String toString() {
+		return "Reservasjon{" + "sted=" + sted + ", destinasjon=" + destinasjon + ", dato=" + dato + ", klokkeslett=" + klokkeslett +
+		       ", antallDager=" + antallDager + ", pris=" + pris + '}';
 	}
 }

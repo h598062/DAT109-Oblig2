@@ -1,13 +1,19 @@
 package no.hvl.dat109;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
 /**
  * Klasse for utleikontor
  */
 public class Utleiekontor {
-	private int nesteKontorNummer = 1;
+	private static int nesteKontorNummer = 1;
 	private int kontorNummer;
 	private String adresse;
 	private String telefon;
+
+	private List<Bil> bilar;
 
 	/**
 	 * Konstruktør for utleikontor
@@ -20,6 +26,7 @@ public class Utleiekontor {
 		this.telefon = telefon;
 		kontorNummer = nesteKontorNummer;
 		nesteKontorNummer++;
+		bilar = new ArrayList<>();
 	}
 
 	public int getKontorNummer() {
@@ -32,5 +39,42 @@ public class Utleiekontor {
 
 	public String getTelefon() {
 		return telefon;
+	}
+
+	public List<Bil> getBilar() {
+		return bilar;
+	}
+
+	public List<Bil> ledigeBilar() {
+		return bilar.stream()
+				.filter(Bil::getLedigStatus)
+				.toList();
+	}
+
+	@Override
+	public String toString() {
+		return "Utleiekontor{" + "kontorNummer=" + kontorNummer + ", adresse='" + adresse + '\'' + ", telefon='" + telefon + '\'' + ", bilar=" +
+		       bilar + '}';
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+		Utleiekontor that = (Utleiekontor) o;
+		return kontorNummer == that.kontorNummer;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(kontorNummer);
+	}
+
+	public void leggTilBil(Bil bil) {
+		bilar.add(bil);
 	}
 }

@@ -6,10 +6,10 @@ public class Bil {
 	private String merke;
 	private String modell;
 	private String farge;
-	private String utleigegruppe;
+	private BilKategori utleigegruppe;
 	private boolean ledigStatus;
 
-public Bil(String registreningsnummer, String merke, String modell, String farge, String utleigegruppe) {
+public Bil(String registreningsnummer, String merke, String modell, String farge, BilKategori utleigegruppe) {
 	this.registreningsnummer = registreningsnummer;
 	this.merke = merke;
 	this.modell =  modell;
@@ -50,11 +50,11 @@ public Bil(String registreningsnummer, String merke, String modell, String farge
 		this.farge = farge;
 	}
 
-	public String getUtleigegruppe() {
+	public BilKategori getUtleigegruppe() {
 		return utleigegruppe;
 	}
 
-	public void setUtleigegruppe(String utleigegruppe) {
+	public void setUtleigegruppe(BilKategori utleigegruppe) {
 		this.utleigegruppe = utleigegruppe;
 	}
 
@@ -64,5 +64,11 @@ public Bil(String registreningsnummer, String merke, String modell, String farge
 
 	public void setLedigStatus(boolean ledigStatus) {
 		this.ledigStatus = ledigStatus;
+	}
+
+	@Override
+	public String toString() {
+		return "Bil{" + "registreningsnummer='" + registreningsnummer + '\'' + ", merke='" + merke + '\'' + ", modell='" + modell + '\'' +
+		       ", farge='" + farge + '\'' + ", utleigegruppe=" + utleigegruppe + ", ledigStatus=" + ledigStatus + '}';
 	}
 }

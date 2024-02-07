@@ -25,6 +25,10 @@ public class Selskap {
 		return navn;
 	}
 
+	public List<Utleiekontor> getUtleiekontorer() {
+		return utleiekontorer;
+	}
+
 	public void setNavn(String navn) {
 		this.navn = navn;
 	}

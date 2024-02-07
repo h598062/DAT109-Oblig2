@@ -5,7 +5,7 @@ public class Main {
 		Selskap selskap = new Selskap("Akat Utleie og Kebab AS & Co", "42069666", "Nesttunvegen 99, 5221 Nesttun");
 		lagTestData(selskap);
 
-		StartSystem.startReservasjon();
+		StartSystem.startReservasjon(selskap);
 	}
 
 	private static void lagTestData(Selskap selskap) {
@@ -15,7 +15,8 @@ public class Main {
 		selskap.leggTilUtleieKontor(uk2);
 
 		Bil kasseBil = new Bil("EB42069", "Rollis Roycis",
-		                       "Ghost", "kvit", "A");
+		                       "Ghost", "kvit", BilKategori.A);
+		uk.leggTilBil(kasseBil);
 
 		Kunde kunde1 = new Kunde("Crissiboiiii",
 		                         "España Rojo",
