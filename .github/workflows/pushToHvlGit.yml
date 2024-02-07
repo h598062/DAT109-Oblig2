@@ -1,0 +1,24 @@
+name: Push to Another Repository
+
+on:
+  push:
+    branches:
+      - main  # Or whichever branch you want to trigger the action
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout source code
+      uses: actions/checkout@v2
+
+    - name: Configure Git
+      run: |
+        git config --global user.email "your-email@example.com"
+        git config --global user.name "Your Name"
+        
+    - name: Push changes
+      run: |
+        git remote add hvlGit https://ider-database.westeurope.cloudapp.azure.com/Bonobo.Git.Server/
+        git push hvlGit HEAD:main  # Or whichever branch you want to push to
