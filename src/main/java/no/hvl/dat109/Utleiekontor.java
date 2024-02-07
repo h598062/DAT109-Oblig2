@@ -21,7 +21,7 @@ public class Utleiekontor {
 		return adresse;
 	}
 
-	public int getTelefon() {
+	public String getTelefon() {
 		return telefon;
 	}
 }

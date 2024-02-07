@@ -10,4 +10,28 @@ public class Selskap {
 		this.telefon = telefon;
 		this.firmaadresse = firmaadresse;
 	}
+
+	public String getNavn() {
+		return navn;
+	}
+
+	public void setNavn(String navn) {
+		this.navn = navn;
+	}
+
+	public int getTelefon() {
+		return telefon;
+	}
+
+	public void setTelefon(int telefon) {
+		this.telefon = telefon;
+	}
+
+	public String getFirmaadresse() {
+		return firmaadresse;
+	}
+
+	public void setFirmaadresse(String firmaadresse) {
+		this.firmaadresse = firmaadresse;
+	}
 }
