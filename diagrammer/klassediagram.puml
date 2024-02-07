@@ -3,14 +3,12 @@
 
 !theme cerulean
 
-class Kunde {
-	fornavn
-	etternavn
+class "Utleiekontor"    as uk {
+	kontornummer
 	adresse
 	telefonnummer
 }
-
-class Bil {
+class "Bil"             as b  {
 	registreringsnummer
 	merke
 	modell
@@ -18,68 +16,53 @@ class Bil {
 	utleiegruppe
 	ledigStatus
 }
-
-class Utleiekontor {
-	kontornummer
+class "Kunde"           as k  {
+	fornavn
+	etternavn
 	adresse
 	telefonnummer
 }
-
-class Selskap {
-	navn
-	telefonnummer
-	firmaadresse
-}
-
-class Reservasjon {
+class "Reservasjon"     as r  {
 	sted
 	dato
 	klokkeslett
 	antallDager
 	pris
 }
+class "Regning"         as rg {
 
-class Utleie {
+}
+class "Utleie"          as u  {
 	henteSted
-	kilometerstandVedHent
-	datoHent
-	klokkeslettHent
-	datoForventetLevert
-	klokkeslettForventetLevert
-	datoLevert
-	klokkeslettLevert
-	kilometerstandVedRetur
-	levertSted
-	pris/regning
+    kilometerstandVedHent
+    datoHent
+    klokkeslettHent
+    datoForventetLevert
+    klokkeslettForventetLevert
+    datoLevert
+    klokkeslettLevert
+    kilometerstandVedRetur
+    levertSted
+    pris/regning
+}
+class "Selskap"         as s {
+	navn
+	telefonnummer
+	firmaadresse
 }
 
-class Regning {
-
-}
-
-class Adresse {
-	gateadresse
-	postnummer
-}
-
-class Poststed {
-	postnummer
-	poststed
-}
-
-Selskap -down- Utleiekontor
-Selskap -left- Adresse
-Adresse -down- Poststed
-Utleiekontor - Bil
-Utleiekontor - Adresse
-Selskap - Kunde
-Kunde - Adresse
-Kunde - Reservasjon
-Kunde -left- Regning
-Reservasjon - Bil
-Utleiekontor -down- Reservasjon
-Utleiekontor -down- Utleie
-Kunde -down- Utleie
-Utleie - Reservasjon
+s  "1..*" -down->  "1..1" uk
+s  "1..*" -down->  "1..1" k
+uk "1..*" -down->  "1..1" r
+uk "1..*" -right-  "1..1" rg
+rg "1..1" -right-  "1..1" k
+uk "1..*" -down->  "1..1" u
+u  "1..1" -up-     "1..1" rg
+uk "1..*" -down->  "1..1" b
+k  "1..*" -down->  "1..1" u
+k  "1..*" -down->  "1..1" r
+u  "1..1" -down->  "1..*" b
+r  "1..1" -down->  "1..*" b
+r  "1..1" -right-> "1..1" u : "                            "
 
 @enduml
