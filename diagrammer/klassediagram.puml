@@ -47,7 +47,6 @@ class "Utleie"          as u  {
     klokkeslettLevert
     kilometerstandVedRetur
     levertSted
-    pris/regning
     kredittkort
 }
 class "Selskap"         as s {
