@@ -11,7 +11,7 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Configure Git
-    - shell: bash
+      shell: bash
       env:
         HVLGITUSERNAME: ${{ secrets.HVLGITUSERNAME }}
         HVLGITPASS: ${{ secrets.HVLGITPASS }}
@@ -20,7 +20,7 @@ jobs:
         git config --global user.name "$HVLGITPASS"
         
     - name: Push changes
-    - shell: bash
+      shell: bash
       run: |
         git remote add hvlGit https://ider-database.westeurope.cloudapp.azure.com/Bonobo.Git.Server/
         git push hvlGit HEAD:main
