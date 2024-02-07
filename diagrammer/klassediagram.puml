@@ -30,6 +30,10 @@ class "Reservasjon"     as r  {
 	pris
 }
 class "Regning"         as rg {
+	regning_nr
+	faktura
+	dato
+	utleiekontor
 
 }
 class "Utleie"          as u  {
@@ -44,6 +48,7 @@ class "Utleie"          as u  {
     kilometerstandVedRetur
     levertSted
     pris/regning
+    kredittkort
 }
 class "Selskap"         as s {
 	navn
@@ -55,7 +60,7 @@ s  "1..*" -down->  "1..1" uk
 s  "1..*" -down->  "1..1" k
 uk "1..*" -down->  "1..1" r
 uk "1..*" -right-  "1..1" rg
-rg "1..1" -right-  "1..1" k
+rg "1..1" -right-  " *..1" k
 uk "1..*" -down->  "1..1" u
 u  "1..1" -up-     "1..1" rg
 uk "1..*" -down->  "1..1" b
