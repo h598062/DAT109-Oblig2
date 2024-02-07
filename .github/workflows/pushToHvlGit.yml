@@ -14,11 +14,11 @@ jobs:
     - name: Configure Git
     - shell: bash
       env:
-        hvlGitUsername: ${{ secrets.hvlGitUsername }}
-        hvlGitPass: ${{ secrets.hvlGitPass }}
+        HVLGITUSERNAME: ${{ secrets.HVLGITUSERNAME }}
+        HVLGITPASS: ${{ secrets.HVLGITPASS }}
       run: |
-        git config --global user.email "$hvlGitUsername"
-        git config --global user.name "$hvlGitPass"
+        git config --global user.email "$HVLGITUSERNAME"
+        git config --global user.name "$HVLGITPASS"
         
     - name: Push changes
     - shell: bash
