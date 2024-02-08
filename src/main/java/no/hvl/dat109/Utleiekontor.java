@@ -14,6 +14,7 @@ public class Utleiekontor {
 	private String telefon;
 
 	private List<Bil> bilar;
+	private List<Reservasjon> reservasjoner;
 
 	/**
 	 * Konstruktør for utleikontor
@@ -27,6 +28,18 @@ public class Utleiekontor {
 		kontorNummer = nesteKontorNummer;
 		nesteKontorNummer++;
 		bilar = new ArrayList<>();
+		reservasjoner = new ArrayList<>();
+	}
+
+	public static void leverBil() {
+	}
+
+	public List<Reservasjon> getReservasjoner() {
+		return reservasjoner;
+	}
+
+	public static void hentBil(Selskap selskap) {
+
 	}
 
 	public int getKontorNummer() {
@@ -76,5 +89,9 @@ public class Utleiekontor {
 
 	public void leggTilBil(Bil bil) {
 		bilar.add(bil);
+	}
+
+	public void leggTilReservasjon(Reservasjon reservasjon) {
+		reservasjoner.add(reservasjon);
 	}
 }

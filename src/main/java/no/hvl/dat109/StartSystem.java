@@ -6,6 +6,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
+import static no.hvl.dat109.Utleiekontor.leverBil;
+
 
 public class StartSystem {
 	private static final int fastAvvik = 500;
@@ -15,28 +17,30 @@ public class StartSystem {
 		boolean avslutt = false;
 
 		while (!avslutt) {
-		System.out.println("Hva vil du gjøre?");
-		int svar = MenyValgHelper.lagEnkelMenyValg(List.of("Finne / Reservere bil",
-		                                        "Hente bil", "Levere bil",
-		                                        "Vis alle aktive reservasjoner",
-		                                        "Vis alle aktive utleier",
-		                                        "Avslutt program"));
+			System.out.println("Hva vil du gjøre?");
+			int svar = MenyValgHelper.lagEnkelMenyValg(List.of(
+					"Finne / Reservere bil",
+					"Hente bil",
+					"Levere bil",
+					"Vis alle aktive reservasjoner",
+					"Vis alle aktive utleier",
+					"Avslutt program"));
 
-			switch(svar) {
+			switch (svar) {
 				case 0:
 					finnBiler(selskap);
 					break;
 				case 1:
-
+					Utleiekontor.hentBil(selskap);
 					break;
 				case 2:
-
+					Utleiekontor.leverBil();
 					break;
 				case 3:
-
+					visAktiveReservasjoner(selskap);
 					break;
 				case 4:
-
+					visAktiveUtleier(selskap);
 					break;
 				case 5:
 					avslutt = true;
@@ -47,6 +51,24 @@ public class StartSystem {
 		}
 		s.close();
 
+	}
+
+	private static void visAktiveReservasjoner(Selskap selskap) {
+		List<Reservasjon> reservasjoner = selskap.getReservasjoner();
+
+		for (Reservasjon reservasjon : reservasjoner) {
+			System.out.println(reservasjon.toString());
+		}
+	}
+
+	private static void visAktiveUtleier(Selskap selskap) {
+		List<Bil> alleBiler = selskap.getAlleBiler();
+		List<Bil> ikkeLedige = alleBiler.stream()
+		                                .filter(x -> !x.getLedigStatus())
+		                                .toList();
+		for (Bil bil : ikkeLedige) {
+			System.out.println(bil.toString());
+		}
 	}
 
 	private static void finnBiler(Selskap selskap) {
@@ -68,8 +90,9 @@ public class StartSystem {
 		BilKategori menyValg = MenyValgHelper.lagMenyValg(Arrays.asList(BilKategori.values()));
 
 		List<Bil> ledigeBilerMedKategori = ledigeBiler.stream()
-				.filter(x -> x.getUtleigegruppe().equals(menyValg))
-				                                      .toList();
+		                                              .filter(x -> x.getUtleigegruppe()
+		                                                            .equals(menyValg))
+		                                              .toList();
 
 		System.out.println("Velg bil:");
 		return MenyValgHelper.lagMenyValg(ledigeBilerMedKategori);
@@ -86,9 +109,9 @@ public class StartSystem {
 			return;
 		}
 
-		Reservasjon reservasjon = new Reservasjon(kontor1, kontor2, LocalDate.now(),
-		                                          LocalTime.now(), antallDager, pris);
+		Reservasjon reservasjon = new Reservasjon(kontor1, kontor2, LocalDate.now(), LocalTime.now(), antallDager, pris);
 		System.out.println(reservasjon);
+		kontor1.leggTilReservasjon(reservasjon);
 	}
 
 	private static double regnUtPris(Bil bil, int antallDager, Utleiekontor kontor1, Utleiekontor kontor2) {

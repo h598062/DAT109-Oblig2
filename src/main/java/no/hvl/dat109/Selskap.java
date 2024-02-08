@@ -11,10 +11,23 @@ public class Selskap {
 	private List<Utleiekontor> utleiekontorer;
 
 	public Selskap(String navn, String telefon, String firmaadresse) {
-		this.navn = navn;
-		this.telefon = telefon;
+		this.navn         = navn;
+		this.telefon      = telefon;
 		this.firmaadresse = firmaadresse;
-		utleiekontorer = new ArrayList<>();
+		utleiekontorer    = new ArrayList<>();
+	}
+
+	public List<Bil> getAlleBiler() {
+		return utleiekontorer.stream()
+		                     .flatMap(x -> x.getBilar()
+		                                    .stream())
+		                     .toList();
+	}
+
+	public List<Reservasjon> getReservasjoner() {
+		return utleiekontorer.stream()
+		                     .flatMap(x -> x.getReservasjoner()
+		                                    .stream()).toList();
 	}
 
 	public void leggTilUtleieKontor(Utleiekontor kontor) {
@@ -48,4 +61,5 @@ public class Selskap {
 	public void setFirmaadresse(String firmaadresse) {
 		this.firmaadresse = firmaadresse;
 	}
+
 }
