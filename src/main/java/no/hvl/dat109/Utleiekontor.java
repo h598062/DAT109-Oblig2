@@ -1,8 +1,11 @@
 package no.hvl.dat109;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Scanner;
 
 /**
  * Klasse for utleikontor
@@ -15,10 +18,12 @@ public class Utleiekontor {
 
 	private List<Bil> bilar;
 	private List<Reservasjon> reservasjoner;
+	private List<Utleie> utleier;
 
 	/**
 	 * Konstruktør for utleikontor
 	 * Kontor nummer blir opprettet automatisk
+	 *
 	 * @param adresse Hvor befinner utleiekontoret seg?
 	 * @param telefon hva er  telefonnummeret?
 	 */
@@ -27,19 +32,57 @@ public class Utleiekontor {
 		this.telefon = telefon;
 		kontorNummer = nesteKontorNummer;
 		nesteKontorNummer++;
-		bilar = new ArrayList<>();
+		bilar         = new ArrayList<>();
 		reservasjoner = new ArrayList<>();
+		utleier       = new ArrayList<>();
 	}
 
 	public static void leverBil() {
+
 	}
 
 	public List<Reservasjon> getReservasjoner() {
 		return reservasjoner;
 	}
 
-	public static void hentBil(Selskap selskap) {
+	public void hentBil() {
+		Scanner s = new Scanner(System.in);
+		System.out.println("Hvem heter din telefon nummeret");
+		boolean ferdig = false;
+		String input = " ";
+		while (!ferdig) {
+			input = s.nextLine();
+			if (InputValidator.validerTlf(input)) {
+				ferdig = true;
+			} else {
+				System.out.println("Ugyldig telefonnummer, prøv igjen");
+			}
+		}
 
+		String finalInput = input;
+		List<Reservasjon> asda = reservasjoner.stream()
+		                                      .filter(k -> k.getKunde()
+		                                                    .getTelefonnummer()
+		                                                    .equals(finalInput))
+		                                      .toList();
+		Reservasjon reservasjon = null;
+		if (asda.isEmpty()) {
+			System.out.println("Fant ingen reservasjoner på dette nummeret");
+			return;
+		} else if (asda.size() == 1) {
+			reservasjon = asda.getFirst();
+		} else {
+			System.out.println("Kvilken reservasjon ynche du å henta?");
+			reservasjon = MenyValgHelper.lagMenyValg(asda);
+		}
+		Utleie utleie = new Utleie(this, 0 , LocalDate.now(), LocalTime.now(),
+		                             LocalDate.now().plusDays(reservasjon.getAntallDager()),
+		                             LocalTime.now().plusHours(reservasjon.getAntallDager() * 24),
+		                             reservasjon.getKunde().lagKredittKort());
+
+		reservasjon.getBil().setLedigStatus(false);
+		this.leggTilUtleie(utleie);
+		reservasjon.setHentet(true);
 	}
 
 	public int getKontorNummer() {
@@ -60,8 +103,8 @@ public class Utleiekontor {
 
 	public List<Bil> ledigeBilar() {
 		return bilar.stream()
-				.filter(Bil::getLedigStatus)
-				.toList();
+		            .filter(Bil::getLedigStatus)
+		            .toList();
 	}
 
 	@Override
@@ -94,4 +137,6 @@ public class Utleiekontor {
 	public void leggTilReservasjon(Reservasjon reservasjon) {
 		reservasjoner.add(reservasjon);
 	}
+
+	public void leggTilUtleie(Utleie utleie) {utleier.add(utleie);}
 }

@@ -8,16 +8,36 @@ public class Reservasjon {
 	private Utleiekontor destinasjon;
 	private LocalDate dato;
 	private LocalTime klokkeslett;
+	private Kunde kunde;
 	private int antallDager;
 	private double pris;
+	private Bil bil;
+	boolean hentet;
 
-	public Reservasjon(Utleiekontor sted, Utleiekontor destinasjon, LocalDate dato, LocalTime klokkeslett, int antallDager, double pris) {
-		this.sted        = sted;
+	public Reservasjon(
+			Utleiekontor sted, Utleiekontor destinasjon, LocalDate dato, LocalTime klokkeslett,
+			Kunde kunde, int antallDager, double pris, Bil bil) {
+		this.sted = sted;
 		this.destinasjon = destinasjon;
-		this.dato        = dato;
+		this.dato = dato;
 		this.klokkeslett = klokkeslett;
+		this.kunde = kunde;
 		this.antallDager = antallDager;
-		this.pris        = pris;
+		this.pris = pris;
+		this.bil = bil;
+		hentet = false;
+	}
+
+	public Kunde getKunde() {
+		return kunde;
+	}
+
+	public void setHentet(boolean hentet) {
+		this.hentet = hentet;
+	}
+
+	public Bil getBil() {
+		return bil;
 	}
 
 	public Utleiekontor getDestinasjon() {

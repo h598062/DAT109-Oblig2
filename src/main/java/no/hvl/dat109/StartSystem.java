@@ -31,10 +31,12 @@ public class StartSystem {
 					finnBiler(selskap);
 					break;
 				case 1:
-					Utleiekontor.hentBil(selskap);
+					Utleiekontor uk = velgUtleiekontor(selskap);
+					uk.hentBil();
 					break;
 				case 2:
-					Utleiekontor.leverBil();
+					Utleiekontor ukkk = velgUtleiekontor(selskap);
+					ukkk.leverBil();
 					break;
 				case 3:
 					visAktiveReservasjoner(selskap);
@@ -51,6 +53,11 @@ public class StartSystem {
 		}
 		s.close();
 
+	}
+
+	private static Utleiekontor velgUtleiekontor(Selskap selskap) {
+		System.out.println("Hvilke utleiekontor er du på");
+		return MenyValgHelper.lagMenyValg(selskap.getUtleiekontorer());
 	}
 
 	private static void visAktiveReservasjoner(Selskap selskap) {
@@ -109,9 +116,24 @@ public class StartSystem {
 			return;
 		}
 
-		Reservasjon reservasjon = new Reservasjon(kontor1, kontor2, LocalDate.now(), LocalTime.now(), antallDager, pris);
+		Kunde kunde = beOmKundeInfo();
+
+		Reservasjon reservasjon = new Reservasjon(kontor1, kontor2, LocalDate.now(),
+		                                          LocalTime.now(), kunde, antallDager, pris, bil);
 		System.out.println(reservasjon);
 		kontor1.leggTilReservasjon(reservasjon);
+	}
+
+	private static Kunde beOmKundeInfo() {
+		System.out.println("Whach bicht tus personal nombre?");
+		String navnTypeFor = s.nextLine();
+		System.out.println("Whach bicht tus etternavn?");
+		String etterTypeNavn = s.nextLine();
+		System.out.println("Adresse?");
+		String korhenHenBurAdresse = s.nextLine();
+		System.out.println("Quiero tu numero mi novio");
+		String telefonTypeApple = s.nextLine();
+		return new Kunde(navnTypeFor, etterTypeNavn, korhenHenBurAdresse, telefonTypeApple);
 	}
 
 	private static double regnUtPris(Bil bil, int antallDager, Utleiekontor kontor1, Utleiekontor kontor2) {

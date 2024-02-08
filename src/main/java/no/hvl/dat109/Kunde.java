@@ -1,5 +1,7 @@
 package no.hvl.dat109;
 
+import java.util.Random;
+
 public class Kunde {
 	private String fornavn;
 	private String etternavn;
@@ -43,5 +45,20 @@ public class Kunde {
 
 	public void setTelefonnummer(String telefonnummer) {
 		this.telefonnummer = telefonnummer;
+	}
+
+	public String lagKredittKort() {
+		StringBuilder kredittkort = new StringBuilder();
+
+		for (int i = 0; i < 4; i++) {
+			int randomTall = new Random().nextInt(1000, 9999);
+
+			if (i < 3) {
+				kredittkort.append(" ");
+			}
+
+			kredittkort.append(randomTall);
+		}
+		return kredittkort.toString();
 	}
 }
