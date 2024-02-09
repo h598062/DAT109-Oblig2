@@ -35,10 +35,11 @@ public class MenyValgHelper {
 				int j = Integer.parseInt(in);
 				retur = valgMuligheter.get(j);
 				invalid = false;
-			} catch (NumberFormatException e) {
+			} catch (NumberFormatException | IndexOutOfBoundsException e) {
 				System.out.println("Feil ved input, prøv igjen");
 			}
 		}
+		System.out.println();
 		return retur;
 	}
 
@@ -68,6 +69,7 @@ public class MenyValgHelper {
 				System.out.println("Feil ved input, prøv igjen");
 			}
 		}
+		System.out.println();
 		return retur;
 	}
 }

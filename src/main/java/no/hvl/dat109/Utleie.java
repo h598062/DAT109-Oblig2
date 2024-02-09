@@ -22,9 +22,13 @@ public class Utleie {
 	private Regning regning;
 	private Kunde kunde;
 
+	private Reservasjon reservasjon;
+
+	private Bil bil;
+
 	public Utleie(
 			Utleiekontor henteSted, int kilometerstandVedHent, LocalDate datoHent, LocalTime tidspunktHent, LocalDate datoForventetLevert,
-			LocalTime tidspunktForventetLevert, String kredittkort, Kunde kunde) {
+			LocalTime tidspunktForventetLevert, String kredittkort, Kunde kunde, Reservasjon reservasjon, Bil bil) {
 		this.henteSted                = henteSted;
 		this.kilometerstandVedHent    = kilometerstandVedHent;
 		this.datoHent                 = datoHent;
@@ -33,6 +37,8 @@ public class Utleie {
 		this.tidspunktForventetLevert = tidspunktForventetLevert;
 		this.kredittkort              = kredittkort;
 		this.kunde                    = kunde;
+		this.reservasjon              = reservasjon;
+		this.bil                      = bil;
 	}
 
 	public Kunde getKunde() {
@@ -56,6 +62,19 @@ public class Utleie {
 	}
 
 	public Regning opprettRegning(LocalDate datoLevert, Utleiekontor utleiekontor) {
-		return new Regning(datoLevert, utleiekontor);
+		return new Regning(datoLevert, utleiekontor, reservasjon.getPris());
+	}
+
+	@Override
+	public String toString() {
+		return "Bil:\n" + bil + "\nKunde:\n" + kunde + "\nRegning:\n" + regning;
+	}
+
+	public Bil getBil() {
+		return bil;
+	}
+
+	public void setBil(Bil bil) {
+		this.bil = bil;
 	}
 }

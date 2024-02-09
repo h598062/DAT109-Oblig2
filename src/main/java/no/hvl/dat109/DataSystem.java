@@ -14,7 +14,7 @@ public class DataSystem {
 		boolean avslutt = false;
 
 		while (!avslutt) {
-			System.out.println("Hva vil du gjøre?");
+			System.out.println("\nHva vil du gjøre?");
 			int svar = MenyValgHelper.lagEnkelMenyValg(List.of(
 					"Finne / Reservere bil",
 					"Hente bil",

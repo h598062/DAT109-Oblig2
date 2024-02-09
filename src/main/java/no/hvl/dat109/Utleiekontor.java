@@ -53,13 +53,15 @@ public class Utleiekontor {
 			utleie = MenyValgHelper.lagMenyValg(asda);
 		}
 
-		System.out.println("Bil " + utleie.toString() + " er nå levert");
-
 		utleie.setDatoLevert(LocalDate.now());
 		utleie.setTidspunktHent(LocalTime.now());
 
+		utleie.getBil().setLedigStatus(true);
+
 		Regning regning = utleie.opprettRegning(utleie.getDatoLevert(), this);
 		utleie.setRegning(regning);
+
+		System.out.println("Du har nå levert inn:\n" + utleie);
 	}
 
 	public List<Reservasjon> getReservasjoner() {
@@ -94,11 +96,11 @@ public class Utleiekontor {
 			System.out.println("Kvilken reservasjon ynche du å henta?");
 			reservasjon = MenyValgHelper.lagMenyValg(asda);
 		}
-		System.out.println("Bilen din er nå hentet " + reservasjon.toString());
+		System.out.println("Bilen din er nå hentet\n" + reservasjon.toString());
 		Utleie utleie = new Utleie(this, 0 , LocalDate.now(), LocalTime.now(),
 		                             LocalDate.now().plusDays(reservasjon.getAntallDager()),
 		                             LocalTime.now().plusHours(reservasjon.getAntallDager() * 24),
-		                             reservasjon.getKunde().lagKredittKort(), reservasjon.getKunde());
+		                             reservasjon.getKunde().lagKredittKort(), reservasjon.getKunde(), reservasjon, reservasjon.getBil());
 
 		reservasjon.getBil().setLedigStatus(false);
 		this.leggTilUtleie(utleie);
@@ -117,8 +119,7 @@ public class Utleiekontor {
 
 	@Override
 	public String toString() {
-		return "Utleiekontor{" + "kontorNummer=" + kontorNummer + ", adresse='" + adresse + '\'' + ", telefon='" + telefon + '\'' + ", bilar=" +
-		       bilar + '}';
+		return "Kontor " + kontorNummer + " - Adresse: " + adresse + " - Tlf: " + telefon;
 	}
 
 	@Override

@@ -14,33 +14,17 @@ public class Regning {
 
 	private Utleiekontor utleiekontor;
 
-	public Regning (LocalDate dato, Utleiekontor utleiekontor) {
-		this.regning_nr = regning_teller++;
-		this.dato = dato;
+	private double pris;
+
+	public Regning(LocalDate dato, Utleiekontor utleiekontor, double pris) {
+		this.pris         = pris;
+		this.regning_nr   = regning_teller++;
+		this.dato         = dato;
 		this.utleiekontor = utleiekontor;
 	}
 
-	public int getRegning_nr() {
-		return regning_nr;
-	}
-
-	public void setRegning_nr(int regning_nr) {
-		this.regning_nr = regning_nr;
-	}
-
-	public LocalDate getDato() {
-		return dato;
-	}
-
-	public void setDato(LocalDate dato) {
-		this.dato = dato;
-	}
-
-	public Utleiekontor getUtleiekontor() {
-		return utleiekontor;
-	}
-
-	public void setUtleiekontor(Utleiekontor utleiekontor) {
-		this.utleiekontor = utleiekontor;
+	@Override
+	public String toString() {
+		return "Regning nummer: " + regning_nr + " - Dato: " + dato + " - Pris: " + pris;
 	}
 }

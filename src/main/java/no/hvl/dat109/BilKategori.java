@@ -17,6 +17,6 @@ public enum BilKategori {
 
 	@Override
 	public String toString() {
-		return name() + " pris: " + pris();
+		return name() + " - Pris: " + pris();
 	}
 }

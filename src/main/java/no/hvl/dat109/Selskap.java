@@ -37,32 +37,9 @@ public class Selskap {
 		utleiekontorer.add(kontor);
 	}
 
-	public String getNavn() {
-		return navn;
-	}
-
 	public List<Utleiekontor> getUtleiekontorer() {
 		return utleiekontorer;
 	}
 
-	public void setNavn(String navn) {
-		this.navn = navn;
-	}
-
-	public String getTelefon() {
-		return telefon;
-	}
-
-	public void setTelefon(String telefon) {
-		this.telefon = telefon;
-	}
-
-	public String getFirmaadresse() {
-		return firmaadresse;
-	}
-
-	public void setFirmaadresse(String firmaadresse) {
-		this.firmaadresse = firmaadresse;
-	}
 
 }

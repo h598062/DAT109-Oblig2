@@ -18,17 +18,16 @@ public class Reservasjon {
 	boolean hentet;
 
 	public Reservasjon(
-			Utleiekontor sted, Utleiekontor destinasjon, LocalDate dato, LocalTime klokkeslett,
-			Kunde kunde, int antallDager, double pris, Bil bil) {
-		this.sted = sted;
+			Utleiekontor sted, Utleiekontor destinasjon, LocalDate dato, LocalTime klokkeslett, Kunde kunde, int antallDager, double pris, Bil bil) {
+		this.sted        = sted;
 		this.destinasjon = destinasjon;
-		this.dato = dato;
+		this.dato        = dato;
 		this.klokkeslett = klokkeslett;
-		this.kunde = kunde;
+		this.kunde       = kunde;
 		this.antallDager = antallDager;
-		this.pris = pris;
-		this.bil = bil;
-		hentet = false;
+		this.pris        = pris;
+		this.bil         = bil;
+		hentet           = false;
 	}
 
 	public Kunde getKunde() {
@@ -43,40 +42,14 @@ public class Reservasjon {
 		return bil;
 	}
 
-	public Utleiekontor getDestinasjon() {
-		return destinasjon;
-	}
-
-	public Utleiekontor getSted() {
-		return sted;
-	}
-
-	public void setSted(Utleiekontor sted) {
-		this.sted = sted;
-	}
-
-	public LocalDate getDato() {
-		return dato;
-	}
-
-	public void setDato(LocalDate dato) {
-		this.dato = dato;
-	}
-
-	public LocalTime getKlokkeslett() {
-		return klokkeslett;
-	}
-
-	public void setKlokkeslett(LocalTime klokkeslett) {
-		this.klokkeslett = klokkeslett;
-	}
-
 	public int getAntallDager() {
 		return antallDager;
 	}
 
-	public void setAntallDager(int antallDager) {
-		this.antallDager = antallDager;
+
+	@Override
+	public String toString() {
+		return "Bil: " + bil + "\nLokasjon: " + sted + "\nDato: " + dato + " " + klokkeslett + "\nLeveringssted: " + destinasjon + "\nPris: " + pris;
 	}
 
 	public double getPris() {
@@ -85,11 +58,5 @@ public class Reservasjon {
 
 	public void setPris(double pris) {
 		this.pris = pris;
-	}
-
-	@Override
-	public String toString() {
-		return "Reservasjon{" + "sted=" + sted + ", destinasjon=" + destinasjon + ", dato=" + dato + ", klokkeslett=" + klokkeslett +
-		       ", antallDager=" + antallDager + ", pris=" + pris + '}';
 	}
 }
