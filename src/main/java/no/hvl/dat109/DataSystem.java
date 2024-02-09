@@ -121,13 +121,13 @@ public class DataSystem {
 	}
 
 	private static Kunde beOmKundeInfo() {
-		String navnTypeFor = ConsoleInputHelper.getString("Whach bicht tus personal nombre?", "Fornavn må være minst en bokstav", 1,1000);
-		String etterTypeNavn = ConsoleInputHelper.getString("Whach bicht tus etternavn?", "Etternavn må være minst en bokstav", 1, 1000);;
+		String navnTypeFor = ConsoleInputHelper.getString("Hva er fornavnet ditt?", "Fornavn må være minst en bokstav", 1,1000);
+		String etterTypeNavn = ConsoleInputHelper.getString("Hva er ditt etternavn?", "Etternavn må være minst en bokstav", 1, 1000);
 		String korhenHenBurAdresse = ConsoleInputHelper.getString("Adresse?", "Adressen må være minst en bokstav", 1, 1000);
-		String telefonTypeApple = ConsoleInputHelper.getString("Quiero tu numero mi novio");
+		String telefonTypeApple = ConsoleInputHelper.getString("Skriv inn telefonnummer");
 		while (!InputValidator.validerTlf(telefonTypeApple)) {
 			System.out.println("Ikke gyldig telefonnummer, kan kun inneholde tall");
-			telefonTypeApple = ConsoleInputHelper.getString("Quiero tu numero mi novio");
+			telefonTypeApple = ConsoleInputHelper.getString("Skriv inn telefonnummer");
 		}
 		return new Kunde(navnTypeFor, etterTypeNavn, korhenHenBurAdresse, telefonTypeApple);
 	}
