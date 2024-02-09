@@ -68,21 +68,15 @@ public class Utleiekontor {
 		return reservasjoner;
 	}
 
-	private String faaTelefonNummer() {
-		Scanner s = new Scanner(System.in);
-		System.out.println("Hvem heter din telefon nummeret");
-		boolean ferdig = false;
-		String input = " ";
-		while (!ferdig) {
-			input = s.nextLine();
-			if (InputValidator.validerTlf(input)) {
-				ferdig = true;
-			} else {
-				System.out.println("Ugyldig telefonnummer, prøv igjen");
-			}
-		}
 
-		return input;
+
+	private static String faaTelefonNummer() {
+		String tlf = ConsoleInputHelper.getString("Hvem heter din telefon nummeret");
+		while (!InputValidator.validerTlf(tlf)) {
+			System.out.println("Ikke gyldig telefonnummer, kan kun inneholde tall");
+			tlf = ConsoleInputHelper.getString("Hvem heter din telefon nummeret");
+		}
+		return tlf;
 	}
 
 	public void hentBil() {
