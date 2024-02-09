@@ -5,7 +5,7 @@ public class Main {
 		Selskap selskap = new Selskap("Akat Utleie og Kebab AS & Co", "42069666", "Nesttunvegen 99, 5221 Nesttun");
 		lagTestData(selskap);
 
-		StartSystem.startReservasjon(selskap);
+		DataSystem.startSystem(selskap);
 	}
 
 	private static void lagTestData(Selskap selskap) {

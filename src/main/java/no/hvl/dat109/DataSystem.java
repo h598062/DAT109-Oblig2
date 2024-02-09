@@ -6,11 +6,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-public class StartSystem {
+public class DataSystem {
 	private static final int fastAvvik = 500;
 	private static Scanner s = new Scanner(System.in);
 
-	public static void startReservasjon(Selskap selskap) {
+	public static void startSystem(Selskap selskap) {
 		boolean avslutt = false;
 
 		while (!avslutt) {
