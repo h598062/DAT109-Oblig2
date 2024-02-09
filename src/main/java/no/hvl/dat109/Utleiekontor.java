@@ -37,15 +37,38 @@ public class Utleiekontor {
 		utleier       = new ArrayList<>();
 	}
 
-	public static void leverBil() {
+	public void leverBil() {
+		String telefonNummer = faaTelefonNummer();
+		List<Utleie> asda = utleier.stream()
+		                                      .filter(k -> k.getKunde()
+		                                                    .getTelefonnummer()
+		                                                    .equals(telefonNummer))
+		                                      .toList();
+		Utleie utleie = null;
+		if (asda.isEmpty()) {
+			System.out.println("Fant ingen utleier på dette nummeret, prøv på nytt");
+			return;
+		} else if (asda.size() == 1) {
+			utleie = asda.getFirst();
+		} else {
+			System.out.println("Hvilke bil ynche du å levera?");
+			utleie = MenyValgHelper.lagMenyValg(asda);
+		}
 
+		System.out.println("Bil " + utleie.toString() + " er nå levert");
+
+		utleie.setDatoLevert(LocalDate.now());
+		utleie.setTidspunktHent(LocalTime.now());
+
+		Regning regning = utleie.opprettRegning(utleie.getDatoLevert(), this);
+		utleie.setRegning(regning);
 	}
 
 	public List<Reservasjon> getReservasjoner() {
 		return reservasjoner;
 	}
 
-	public void hentBil() {
+	private String faaTelefonNummer() {
 		Scanner s = new Scanner(System.in);
 		System.out.println("Hvem heter din telefon nummeret");
 		boolean ferdig = false;
@@ -59,11 +82,15 @@ public class Utleiekontor {
 			}
 		}
 
-		String finalInput = input;
+		return input;
+	}
+
+	public void hentBil() {
+		String telefonNummer = faaTelefonNummer();
 		List<Reservasjon> asda = reservasjoner.stream()
 		                                      .filter(k -> k.getKunde()
 		                                                    .getTelefonnummer()
-		                                                    .equals(finalInput))
+		                                                    .equals(telefonNummer))
 		                                      .toList();
 		Reservasjon reservasjon = null;
 		if (asda.isEmpty()) {
@@ -75,10 +102,11 @@ public class Utleiekontor {
 			System.out.println("Kvilken reservasjon ynche du å henta?");
 			reservasjon = MenyValgHelper.lagMenyValg(asda);
 		}
+		System.out.println("Bilen din er nå hentet " + reservasjon.toString());
 		Utleie utleie = new Utleie(this, 0 , LocalDate.now(), LocalTime.now(),
 		                             LocalDate.now().plusDays(reservasjon.getAntallDager()),
 		                             LocalTime.now().plusHours(reservasjon.getAntallDager() * 24),
-		                             reservasjon.getKunde().lagKredittKort());
+		                             reservasjon.getKunde().lagKredittKort(), reservasjon.getKunde());
 
 		reservasjon.getBil().setLedigStatus(false);
 		this.leggTilUtleie(utleie);

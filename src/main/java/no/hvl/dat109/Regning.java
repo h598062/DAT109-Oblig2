@@ -3,18 +3,16 @@ package no.hvl.dat109;
 import java.time.LocalDate;
 
 public class Regning {
+	private static int regning_teller = 1000;
 
 	private int regning_nr;
 
-	private int faktura;
-
 	private LocalDate dato;
 
-	private String utleiekontor;
+	private Utleiekontor utleiekontor;
 
-	public Regning (int regning_nr,int faktura,LocalDate dato,String utleiekontor) {
-		this.regning_nr = regning_nr;
-		this.faktura = faktura;
+	public Regning (LocalDate dato, Utleiekontor utleiekontor) {
+		this.regning_nr = regning_teller++;
 		this.dato = dato;
 		this.utleiekontor = utleiekontor;
 	}
@@ -27,14 +25,6 @@ public class Regning {
 		this.regning_nr = regning_nr;
 	}
 
-	public int getFaktura() {
-		return faktura;
-	}
-
-	public void setFaktura(int faktura) {
-		this.faktura = faktura;
-	}
-
 	public LocalDate getDato() {
 		return dato;
 	}
@@ -43,11 +33,11 @@ public class Regning {
 		this.dato = dato;
 	}
 
-	public String getUtleiekontor() {
+	public Utleiekontor getUtleiekontor() {
 		return utleiekontor;
 	}
 
-	public void setUtleiekontor(String utleiekontor) {
+	public void setUtleiekontor(Utleiekontor utleiekontor) {
 		this.utleiekontor = utleiekontor;
 	}
 }

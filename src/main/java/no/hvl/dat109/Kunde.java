@@ -47,6 +47,10 @@ public class Kunde {
 		this.telefonnummer = telefonnummer;
 	}
 
+	/**
+	 * Lager et tilfeldig kredittkort nummer
+	 * @return String tilfeldig kredittkort nummer
+	 */
 	public String lagKredittKort() {
 		StringBuilder kredittkort = new StringBuilder();
 

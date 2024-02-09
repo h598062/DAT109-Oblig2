@@ -6,9 +6,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-import static no.hvl.dat109.Utleiekontor.leverBil;
-
-
 public class StartSystem {
 	private static final int fastAvvik = 500;
 	private static Scanner s = new Scanner(System.in);

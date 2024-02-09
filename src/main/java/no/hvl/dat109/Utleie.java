@@ -1,7 +1,6 @@
 package no.hvl.dat109;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 public class Utleie {
@@ -18,10 +17,11 @@ public class Utleie {
 	private LocalTime tidspunktLevert;
 	private String kredittkort;
 	private Regning regning;
+	private Kunde kunde;
 
 	public Utleie(
 			Utleiekontor henteSted, int kilometerstandVedHent, LocalDate datoHent, LocalTime tidspunktHent, LocalDate datoForventetLevert,
-			LocalTime tidspunktForventetLevert, String kredittkort) {
+			LocalTime tidspunktForventetLevert, String kredittkort, Kunde kunde) {
 		this.henteSted                = henteSted;
 		this.kilometerstandVedHent    = kilometerstandVedHent;
 		this.datoHent                 = datoHent;
@@ -29,6 +29,11 @@ public class Utleie {
 		this.datoForventetLevert      = datoForventetLevert;
 		this.tidspunktForventetLevert = tidspunktForventetLevert;
 		this.kredittkort              = kredittkort;
+		this.kunde                    = kunde;
+	}
+
+	public Kunde getKunde() {
+		return kunde;
 	}
 
 	public Utleiekontor getHenteSted() {
@@ -125,5 +130,9 @@ public class Utleie {
 
 	public void setRegning(Regning regning) {
 		this.regning = regning;
+	}
+
+	public Regning opprettRegning(LocalDate datoLevert, Utleiekontor utleiekontor) {
+		return new Regning(datoLevert, utleiekontor);
 	}
 }
