@@ -106,8 +106,7 @@ public class StartSystem {
 	}
 
 	private static void reserverBil(Utleiekontor kontor1, Utleiekontor kontor2, Bil bil) {
-		System.out.println("Hvor mange dager vil du leie bilen?");
-		int antallDager = Integer.parseInt(s.nextLine());
+		int antallDager = ConsoleInputHelper.getInt("Hvor mange dager vil du leie bilen?");
 		double pris = regnUtPris(bil, antallDager, kontor1, kontor2);
 
 		System.out.println("Er du sikker på at du vil reservere " + bil);
@@ -125,14 +124,14 @@ public class StartSystem {
 	}
 
 	private static Kunde beOmKundeInfo() {
-		System.out.println("Whach bicht tus personal nombre?");
-		String navnTypeFor = s.nextLine();
-		System.out.println("Whach bicht tus etternavn?");
-		String etterTypeNavn = s.nextLine();
-		System.out.println("Adresse?");
-		String korhenHenBurAdresse = s.nextLine();
-		System.out.println("Quiero tu numero mi novio");
-		String telefonTypeApple = s.nextLine();
+		String navnTypeFor = ConsoleInputHelper.getString("Whach bicht tus personal nombre?", "Fornavn må være minst en bokstav", 1,1000);
+		String etterTypeNavn = ConsoleInputHelper.getString("Whach bicht tus etternavn?", "Etternavn må være minst en bokstav", 1, 1000);;
+		String korhenHenBurAdresse = ConsoleInputHelper.getString("Adresse?", "Adressen må være minst en bokstav", 1, 1000);
+		String telefonTypeApple = ConsoleInputHelper.getString("Quiero tu numero mi novio");
+		while (!InputValidator.validerTlf(telefonTypeApple)) {
+			System.out.println("Ikke gyldig telefonnummer, kan kun inneholde tall");
+			telefonTypeApple = ConsoleInputHelper.getString("Quiero tu numero mi novio");
+		}
 		return new Kunde(navnTypeFor, etterTypeNavn, korhenHenBurAdresse, telefonTypeApple);
 	}
 
