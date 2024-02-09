@@ -1,6 +1,8 @@
 package no.hvl.dat109;
 
-
+/**
+ * Lager en bil
+ */
 public class Bil {
 	private String registreningsnummer;
 	private String merke;

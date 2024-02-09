@@ -3,6 +3,9 @@ package no.hvl.dat109;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Selskapet som er øverst av alle klassen. Selskap eier flere utleiekontor og lignande
+ */
 public class Selskap {
 	private String navn;
 	private String telefon;

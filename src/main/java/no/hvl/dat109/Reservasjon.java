@@ -3,6 +3,9 @@ package no.hvl.dat109;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+/**
+ * Lager en reservasjon
+ */
 public class Reservasjon {
 	private Utleiekontor sted;
 	private Utleiekontor destinasjon;

@@ -8,6 +8,10 @@ public class Main {
 		DataSystem.startSystem(selskap);
 	}
 
+	/**
+	 * Lager test data slik at vi slipper å legge inn data hver gang
+	 * @param selskap
+	 */
 	private static void lagTestData(Selskap selskap) {
 		Utleiekontor uk = new Utleiekontor("Nesttunvegen 99, 5221 Nesttun", "12345678");
 		Utleiekontor uk2 = new Utleiekontor("Giskegjerde 69", "87654321");

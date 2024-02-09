@@ -1,5 +1,8 @@
 package no.hvl.dat109;
 
+/**
+ * Enum for å si bestemme hvilke størrelse og gruppe en bil hører til
+ */
 public enum BilKategori {
 	A(800), B(1200), C(1800), D(2500);
 

@@ -2,6 +2,9 @@ package no.hvl.dat109;
 
 import java.util.Random;
 
+/**
+ * Lage en kunde
+ */
 public class Kunde {
 	private String fornavn;
 	private String etternavn;

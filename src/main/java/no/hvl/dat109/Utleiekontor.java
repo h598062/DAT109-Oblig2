@@ -5,7 +5,6 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Scanner;
 
 /**
  * Klasse for utleikontor
@@ -30,8 +29,7 @@ public class Utleiekontor {
 	public Utleiekontor(String adresse, String telefon) {
 		this.adresse = adresse;
 		this.telefon = telefon;
-		kontorNummer = nesteKontorNummer;
-		nesteKontorNummer++;
+		kontorNummer = nesteKontorNummer++;
 		bilar         = new ArrayList<>();
 		reservasjoner = new ArrayList<>();
 		utleier       = new ArrayList<>();
@@ -105,18 +103,6 @@ public class Utleiekontor {
 		reservasjon.getBil().setLedigStatus(false);
 		this.leggTilUtleie(utleie);
 		reservasjon.setHentet(true);
-	}
-
-	public int getKontorNummer() {
-		return kontorNummer;
-	}
-
-	public String getAdresse() {
-		return adresse;
-	}
-
-	public String getTelefon() {
-		return telefon;
 	}
 
 	public List<Bil> getBilar() {

@@ -2,6 +2,9 @@ package no.hvl.dat109;
 
 import java.time.LocalDate;
 
+/**
+ * Lager en regning som blir levert ut når en utleie er levert
+ */
 public class Regning {
 	private static int regning_teller = 1000;
 
